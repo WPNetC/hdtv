@@ -1,3 +1,23 @@
+@keyframes redFlash {
+    0% {
+        background-color: $col-over;
+    }
+    100% {
+        background-color: $col-extr;
+    }
+}
+
+@keyframes warnFlash {
+    0% {
+        background-color: $col-warn;
+        color: $col-blk;
+    }
+    100% {
+        background-color: $col-over;
+        color: $col-wht;
+    }
+}
+
 .client {
     border: 1px solid $col-blk;
     margin-top: 1em;
@@ -28,17 +48,28 @@
 }
 
 .tb {
+    color: $col-wht;
     &--good {
         background-color: $col-good;
-        color: $col-blk;
+    }
+    &--extreme {
+        animation-duration: 2s;
+        animation-name: redFlash;
+        animation-direction: alternate;
+        animation-iteration-count: infinite;
     }
     &--overrun {
         background-color: $col-over;
-        color: $col-wht;
     }
     &--warning {
         background-color: $col-warn;
         color: $col-blk;
+        &__over {
+            animation-duration: 2s;
+            animation-name: warnFlash;
+            animation-direction: alternate;
+            animation-iteration-count: infinite;
+        }
     }
 }
 

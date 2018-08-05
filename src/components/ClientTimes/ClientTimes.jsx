@@ -70,6 +70,14 @@ class ClientTimes extends Component {
                 timeUsed: 6,
                 timeRemaining: 2,
                 percentLeft: 25
+            },
+            {
+                logo: '',
+                name: 'Comapny 6',
+                timeBank: 8,
+                timeUsed: 7.5,
+                timeRemaining: 0.5,
+                percentLeft: 25
             }
         ];
     }
@@ -80,9 +88,9 @@ class ClientTimes extends Component {
             <div>
                 <h2 className="text-right">Last Update: {this.state.time}</h2>
                 <div className="container">
-                    <ClientRows data={this.state.data} />
-                    <hr />
                     <ClientFilter callback={this.filterCallback} />
+                    <hr />
+                    <ClientRows data={this.state.data} />
                 </div>
             </div>
         );

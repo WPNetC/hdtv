@@ -1,6 +1,5 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const HardSourceWebpackPlugin = require('hard-source-webpack-plugin');
 const WebpackMd5Hash = require('webpack-md5-hash');
 const webpack = require('webpack');
 
@@ -17,6 +16,7 @@ let config = {
         contentBase: path.resolve(__dirname, 'build'),
         hot: true,
         historyApiFallback: true,
+        open: true,
         port: 3000,
         watchContentBase: true
     },
@@ -71,8 +71,7 @@ let config = {
         new WebpackMd5Hash(),
         new HtmlWebpackPlugin({
             template: path.resolve(__dirname, 'public', 'index.html')
-        }),
-        new HardSourceWebpackPlugin()
+        })
     ]
 };
 

@@ -4,8 +4,12 @@ class ClientRows extends Component {
     render() {
         return <div className="row client--results">
             {this.props.data.map((result) =>
-                <div key={result.name} className={"col-xs-12 col-md-12 client tb--" + (result.timeRemaining < 0 ? "overrun" : result.timeRemaining < 1.25 ? "warning" : "good")}>
-                    <img className="client--logo" src={result.logo} alt="img" />
+                <div key={result.name} className={"col-xs-12 col-md-12 client tb tb--" + (
+                    result.timeRemaining < -1 ? "extreme" :
+                    result.timeRemaining < 0 ? "overrun" :
+                    result.timeRemaining < 1 ? "warning__over" :
+                    result.timeRemaining < 1.25 ? "warning" :
+                    "good")}>                    
                     <h3>{result.name}</h3>
                     <div className="timebank--container">
                         <span className="timebank--item">
