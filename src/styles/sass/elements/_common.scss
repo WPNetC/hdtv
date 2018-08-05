@@ -15,6 +15,15 @@
 	}
 }
 
+.btn--filter {
+	display: inherit;
+	margin-bottom: 1rem;
+	margin-top: 1rem;
+	margin-left: auto;
+	margin-right: auto;
+	width: 30%;
+}
+
 .text {
 	&-small {
 		font-size: 60%;

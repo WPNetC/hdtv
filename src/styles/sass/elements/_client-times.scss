@@ -1,0 +1,50 @@
+.client {
+    border: 1px solid $col-blk;
+    margin-top: 1em;
+    &--logo {
+        float: right;
+    }
+    &--results {
+        display: flex;
+        flex-direction: column;
+    }
+    .timebank {
+        &--container {
+            display: flex;
+            flex-direction: row;
+        }
+        &--item {
+            display: inline-block;
+            text-align: center;
+            width: 100%;
+        }
+        &--label {
+            font-weight: 600;
+        }
+        &--value {
+            font-weight: 400;
+        }
+    }
+}
+
+.tb {
+    &--good {
+        background-color: $col-good;
+        color: $col-blk;
+    }
+    &--overrun {
+        background-color: $col-over;
+        color: $col-wht;
+    }
+    &--warning {
+        background-color: $col-warn;
+        color: $col-blk;
+    }
+}
+
+.filter {
+    text-align: center;
+    &--input {
+        width: 100%;
+    }
+}

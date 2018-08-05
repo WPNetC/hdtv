@@ -1,16 +1,28 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const HardSourceWebpackPlugin = require('hard-source-webpack-plugin');
+const WebpackMd5Hash = require('webpack-md5-hash');
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 const webpack = require('webpack');
 
 module.exports = {
-    entry: path.join(__dirname, 'src', 'components', 'App.js'),
+    entry: path.resolve(__dirname, 'src', 'components', 'App.jsx'),
     output: {
-        path: path.join(__dirname, 'build'),
-        filename: '[name].bundle.[hash].js'
+        path: path.resolve(__dirname, 'build'),
+        filename: '[name].bundle.[hash].js',
+        publicPath: '/'
     },
     devtool: 'inline-source-map',
+    devServer: {
+        hot: true,
+        historyApiFallback: true,
+    },
+    watchOptions: {
+        aggregateTimeout: 300,
+        poll: 1000 // is this the same as specifying --watch-poll?
+    },
     module: {
         rules: [{
             test: /\.jsx?$/,
@@ -20,6 +32,7 @@ module.exports = {
             test: /\.scss$/,
             use: [
                 'style-loader',
+                MiniCssExtractPlugin.loader,
                 'css-loader',
                 'sass-loader'
             ]
@@ -53,11 +66,16 @@ module.exports = {
     },
     plugins: [
         new CleanWebpackPlugin(['build']),
+        new HardSourceWebpackPlugin(),
+        new MiniCssExtractPlugin({
+            filename: 'style.[contenthash].css',
+        }),
         new webpack.SourceMapDevToolPlugin({
             filename: '[name].js.map'
         }),
+        new WebpackMd5Hash(),
         new HtmlWebpackPlugin({
-            template: path.join(__dirname, 'public', 'index.html')
+            template: path.resolve(__dirname, 'public', 'index.html')
         })
     ]
 }
