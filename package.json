@@ -10,9 +10,9 @@
     ]
   },
   "scripts": {
-    "start": "webpack-dev-server --inline --hot --watch-poll",
-    "watch": "webpack --watch",
-    "deploy": "webpack -p"
+    "start": "webpack-dev-server --inline --hot --watch-poll --mode development",
+    "watch": "webpack --watch --mode development",
+    "deploy": "webpack --mode production"
   },
   "dependencies": {
     "babel-core": "^6.26.3",

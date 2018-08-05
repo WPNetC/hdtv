@@ -5,11 +5,11 @@ class ClientFilter extends Component {
     return<div>
         <div className="row">
             <div className="col-xs-12 col-md-4 filter">
-                <h5>Cut Off</h5>
+                <h5>Cut Off (Hrs)</h5>
                 <input className="filter--input filter--input__text" type="number" />
             </div>
             <div className="col-xs-12 col-md-4 filter">
-                <h5>Refresh</h5>
+                <h5>Refresh (Mins)</h5>
                 <input className="filter--input filter--input__text" type="number" />
             </div>
             <div className="col-xs-12 col-md-4 filter">
