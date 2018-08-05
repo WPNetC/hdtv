@@ -1,0 +1,32 @@
+
+.break {
+	display: block;
+	height: 0.1rem;
+	width: 100%;
+
+	&--clear {
+		background-color: $col-trans;
+		color: $col-trans;
+	}
+
+	&--line {
+		background-color: $col-charcoal;
+		color: $col-charcoal;
+	}
+}
+
+.text {
+	&-small {
+		font-size: 60%;
+	}
+	&-med {
+		font-size: 80%;
+	}
+	&-lrg {
+		font-size: 120%;
+	}
+}
+
+.hidden {
+	display: none !important;
+}
