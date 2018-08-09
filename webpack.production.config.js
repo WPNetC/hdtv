@@ -3,6 +3,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const WebpackMd5Hash = require('webpack-md5-hash');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 const webpack = require('webpack');
 
 let config = {
@@ -62,8 +63,14 @@ let config = {
         }),
         new WebpackMd5Hash(),
         new HtmlWebpackPlugin({
-            template: path.resolve(__dirname, 'public', 'index.html')
-        })
+            template: path.resolve(__dirname, 'public', 'index.php')
+        }),
+        new CopyWebpackPlugin([
+            {
+              from: 'public/api/',
+              to: 'api/'
+            }
+          ])
     ]
 };
 

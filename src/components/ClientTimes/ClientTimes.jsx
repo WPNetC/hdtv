@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import ClientRows from './ClientRows.jsx';
 import ClientFilter from './ClientFilter.jsx';
 import { filter, sort } from './filterService';
+import { getAll } from './dbService';
 
 class ClientTimes extends Component {
     constructor() {
@@ -30,6 +31,11 @@ class ClientTimes extends Component {
 
     getData() {
         //TODO: Add real data service
+
+        getAll((data) => {
+            alert(data);
+        });
+
         return [
             {
                 logo: '',
