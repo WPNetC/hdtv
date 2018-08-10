@@ -1,28 +1,32 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch, Link, browserHistory } from 'react-router-dom';
 import Home from './Home.jsx';
 import ClientTimes from './ClientTimes/ClientTimes.jsx';
 import SlackConfig from './Slack/SlackConfig.jsx';
-import '../styles/sass/main.scss'
+import '../scripts/js/main';
 
 class App extends Component {
   render() {
     return (
       <Router>
-        <div>
-          <ul>
-            <li><Link to={'/'}>Home</Link></li>
-            <li><Link to={'/times'}>Client Times</Link></li>
-            <li><Link to={'/slack'}>Slack Config</Link></li>
-          </ul>
+        <div className="page--wrapper">
+          <div className="page--head nav">
+            <ul>
+              <li><Link to={'/'}>Home</Link></li>
+              <li><Link to={'/times'}>Client Times</Link></li>
+              <li><Link to={'/slack'}>Slack Config</Link></li>
+            </ul>
+          </div>
           <hr />
-
-          <Switch>
+          <div className="page--body">
             <Route exact path='/' component={Home} />
-            <Route exact path='/times' component={ClientTimes} />
-            <Route exact path='/slack' component={SlackConfig} />
-          </Switch>
+            <Route path='/times' component={ClientTimes} />
+            <Route path='/slack' component={SlackConfig} />
+          </div>
+          <div className="page--foot">
+            <div className="text-center">&copy; NetConstruct <span className="js-footer-date"></span> Support Desk Team</div>
+          </div>
         </div>
       </Router>
     );
@@ -30,9 +34,7 @@ class App extends Component {
 }
 
 ReactDOM.render(
-  <div>
-    <App />
-  </div>,
+  <App />,
   document.getElementById('root')
 );
 

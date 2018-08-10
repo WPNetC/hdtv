@@ -1,16 +1,33 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const CleanWebpackPlugin = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const WebpackMd5Hash = require('webpack-md5-hash');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
+const WebpackMd5Hash = require('webpack-md5-hash');
 const webpack = require('webpack');
 
 let config = {
     entry: path.resolve(__dirname, 'src', 'components', 'App.jsx'),
     output: {
         path: path.resolve(__dirname, 'build'),
-        filename: '[name].bundle.[hash].js'
+        filename: '[name].bundle.[hash].js',
+        publicPath: 'http://localhost:3100/',
+        chunkFilename: '[name].js'
+    },
+    devtool: 'source-map',
+    devServer: {
+        contentBase: path.resolve(__dirname, 'build'),
+        hot: true,
+        inline: true,
+        historyApiFallback: true,
+        host: 'localhost',
+        open: false,
+        port: 3100,
+        watchContentBase: true
+    },
+    watchOptions: {
+        aggregateTimeout: 300,
+        poll: 1000
     },
     module: {
         rules: [{
@@ -21,7 +38,6 @@ let config = {
             test: /\.scss$/,
             use: [
                 'style-loader',
-                MiniCssExtractPlugin.loader,
                 'css-loader',
                 'sass-loader'
             ]
@@ -54,26 +70,29 @@ let config = {
         }]
     },
     plugins: [
-        new CleanWebpackPlugin(['build']),
+        new webpack.HotModuleReplacementPlugin(),
         new MiniCssExtractPlugin({
             filename: 'style.[contenthash].css',
         }),
+        new WebpackMd5Hash(),
         new webpack.SourceMapDevToolPlugin({
             filename: '[name].js.map'
         }),
-        new WebpackMd5Hash(),
         new HtmlWebpackPlugin({
             template: path.resolve(__dirname, 'public', 'index.html')
         }),
-        new CopyWebpackPlugin([
-            {
-              from: 'public/api/',
-              to: 'api/'
-            }
-          ])
+        new CopyWebpackPlugin([{
+            from: 'public/api/',
+            to: 'api/'
+        }]),
+        new BrowserSyncPlugin({
+            host: 'localhost',
+            port: 3000,
+            proxy: 'localhost:3100'
+        }, {
+            reload: true
+        })
     ]
 };
 
-module.exports =  {
-    config: config
-};
+module.exports = config;

@@ -2,7 +2,6 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const CopyWebpackPlugin = require('copy-webpack-plugin');
-const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
 const webpack = require('webpack');
 
 let config = {
@@ -74,30 +73,12 @@ let config = {
             filename: '[name].js.map'
         }),
         new HtmlWebpackPlugin({
-            template: path.resolve(__dirname, 'public', 'index.php')
+            template: path.resolve(__dirname, 'public', 'index.html')
         }),
         new CopyWebpackPlugin([{
             from: 'public/api/',
             to: 'api/'
-        }]),
-        new BrowserSyncPlugin(
-            // BrowserSync options
-            {
-                // browse to http://localhost:3000/ during development
-                host: 'localhost',
-                port: 3000,
-                // proxy the Webpack Dev Server endpoint
-                // (which should be serving on http://localhost:3100/)
-                // through BrowserSync
-                proxy: 'http://localhost:2262/'
-            },
-            // plugin options
-            {
-                // prevent BrowserSync from reloading the page
-                // and let Webpack Dev Server take care of this
-                reload: true
-            }
-        )
+        }])
     ]
 };
 

@@ -1,3 +1,5 @@
+import $ from 'jquery';
+
 const $modal = $('.js-modal');
 const className = 'hidden';
 

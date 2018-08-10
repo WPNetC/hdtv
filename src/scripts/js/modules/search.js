@@ -1,3 +1,5 @@
+import $ from 'jquery';
+
 $(document).ready(function () {
 	var search = function () {
 		var term = $('.js-search-txt').val();

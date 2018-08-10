@@ -33,20 +33,21 @@ class ClientTimes extends Component {
         this.setState({
             filterObj: filterParams
         });
+        this.update();
     }
 
-    getData() {
+    getData(callback) {
         //TODO: Add real data service
         getAll((data) => {
-            console.log(data);
-            return data || [{
-                logo: '',
+            const result = data || [{
                 name: 'Test company',
                 timeBank: 8,
                 timeUsed: 7.5,
                 timeRemaining: 0.5,
                 percentLeft: 25
             }];
+
+            callback(result);
         });
     }
 
@@ -64,17 +65,18 @@ class ClientTimes extends Component {
     }
 
     update() {
-        var data = this.getData();
-        var filtered = filter(data, 'cutOff', this.state.filterObj.cutOff);
-        var date = new Date();
-        this.setState({
-            time: `${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`,
-            data: filtered
+        this.getData((data) => {
+            var filtered = filter(data, 'cutOff', this.state.filterObj.cutOff);
+            var date = new Date();
+            console.log(filtered);
+            this.setState({
+                time: `${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`,
+                data: filtered.length > 0 ? filtered : data
+            });
+            data = null;
+            date = null;
+            filtered = null;
         });
-        data = null;
-        date = null;
-        filtered = null;
-
     }
 }
 
