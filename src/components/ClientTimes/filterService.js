@@ -1,54 +1,81 @@
 const filterData = (data, colName, val) => {
     var result = [];
-    for (let idx = 0; idx < data.length; idx++) {
-        const element = data[idx];
-        if (colName === 'cutOff' && element.timeRemaining <= val) {
-            result.push(element);
-        }
+    if (data && data.length) {
+        for (let idx = 0; idx < data.length; idx++) {
+            const element = data[idx];
+            if (colName === 'cutOff' && element.timeRemaining <= val) {
+                result.push(element);
+            }
 
+        }
+        data = null;
     }
-    data = null;
     return result;
 };
 
 const sortName = (data, direction) => {
-    if (direction === 0) {
+    var result = [];
+    if (data && data.length) {
+        if (direction === 0) {
 
-    } else {
+        } else {
 
+        }
+        data = null;
     }
+    return result;
 };
 
 const sortTimeTotal = (data, direction) => {
-    if (direction === 0) {
+    var result = [];
+    if (data && data.length) {
+        if (direction === 0) {
 
-    } else {
+        } else {
 
+        }
+        data = null;
     }
+    return result;
 };
 
 const sortTimeUsed = (data, direction) => {
-    if (direction === 0) {
+    var result = [];
+    if (data && data.length) {
+        if (direction === 0) {
 
-    } else {
+        } else {
 
+        }
+        data = null;
     }
+    return result;
 };
 
 const sortTimeRemain = (data, direction) => {
-    if (direction === 0) {
+    var result = [];
+    if (data && data.length) {
+        if (direction === 0) {
 
-    } else {
+        } else {
 
+        }
+        data = null;
     }
+    return result;
 };
 
 const sortTimePercent = (data, direction) => {
-    if (direction === 0) {
+    var result = [];
+    if (data && data.length) {
+        if (direction === 0) {
 
-    } else {
+        } else {
 
+        }
+        data = null;
     }
+    return result;
 };
 
 export const filter = filterData;

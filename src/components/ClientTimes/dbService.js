@@ -6,6 +6,20 @@ const getAll = (callback) => {
     });
 }
 
+const getWithLessTimeRemaining = (num, callback) => {
+    $.get('/api/db.php?c=ltr&n='+num, (data) => {
+        callback(data);
+    });
+}
+
+const getWithMoreTimeRemaining = (num, callback) => {
+    $.get('/api/db.php?c=mtr&n='+num, (data) => {
+        callback(data);
+    });
+}
+
 module.exports = {
-    getAll: getAll
+    getAll: getAll,
+    getWithLessTimeRemaining: getWithLessTimeRemaining,
+    getWithMoreTimeRemaining: getWithMoreTimeRemaining
 }
