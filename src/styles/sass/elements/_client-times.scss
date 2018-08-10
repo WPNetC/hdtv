@@ -21,6 +21,7 @@
 .client {
     border: 1px solid $col-blk;
     margin-top: 1em;
+    height: 6rem;
     &--logo {
         float: right;
     }
@@ -28,22 +29,31 @@
         display: flex;
         flex-direction: column;
     }
-    .timebank {
-        &--container {
-            display: flex;
-            flex-direction: row;
-        }
-        &--item {
-            display: inline-block;
-            text-align: center;
-            width: 100%;
-        }
-        &--label {
-            font-weight: 600;
-        }
-        &--value {
-            font-weight: 400;
-        }
+}
+
+.timebank {
+    &--container {
+        display: flex;
+        flex-direction: row;
+        height: 100%;
+    }
+    &--header {
+        border: 1px solid $col-blk;
+        display: inline-block;
+        text-align: center;
+        width: 100%;
+        cursor: pointer;
+    }
+    &--label {
+        font-weight: 800;
+    }
+    &--value {
+        font-weight: 700;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        text-align: center;
+        width: 100%;    
     }
 }
 

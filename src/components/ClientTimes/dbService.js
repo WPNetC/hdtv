@@ -1,29 +1,44 @@
 import $ from 'jquery';
+
+const newGuid = () => {
+    function s4() {
+        return Math.floor((1 + Math.random()) * 0x10000)
+            .toString(16)
+            .substring(1);
+    }
+    return s4() + s4() + '-' + s4() + '-' + s4() + '-' + s4() + '-' + s4() + s4() + s4();
+};
+
 const debugData = [{
-    name: 'c1',
+    id: newGuid(),
+    name: 'client name number 1',
     timeBank: 50,
     timeUsed: 25,
     timeRemaining: 25,
     percentLeft: 50
 }, {
-    name: 'c2',
+    id: newGuid(),
+    name: 'client with a longer name',
     timeBank: 10,
     timeUsed: 9,
     timeRemaining: 1,
     percentLeft: 10
 }, {
+    id: newGuid(),
     name: 'c3',
     timeBank: 10,
     timeUsed: 8,
     timeRemaining: 2,
     percentLeft: 20
 }, {
-    name: 'c4',
+    id: newGuid(),
+    name: 'this is really quite a long name',
     timeBank: 10,
     timeUsed: 11,
     timeRemaining: -1,
     percentLeft: -10
 }, {
+    id: newGuid(),
     name: 'c5',
     timeBank: 10,
     timeUsed: 9.5,
@@ -36,7 +51,7 @@ const getAll = (callback) => {
         let parsed = {};
         try {
             parsed = JSON.parse(data);
-        } catch(ex) {
+        } catch (ex) {
             parsed = debugData;
         }
         callback(parsed);
