@@ -59,22 +59,23 @@ let config = {
     },
     plugins: [
         new CleanWebpackPlugin(['build']),
+        new WebpackMd5Hash(),
         new MiniCssExtractPlugin({
             filename: 'style.[contenthash].css',
         }),
         new webpack.SourceMapDevToolPlugin({
             filename: '[name].js.map'
         }),
-        new WebpackMd5Hash(),
         new HtmlWebpackPlugin({
             template: path.resolve(__dirname, 'public', 'index.html')
         }),
-        new CopyWebpackPlugin([
-            {
-              from: 'public/api/',
-              to: 'api/'
-            }
-          ])
+        new CopyWebpackPlugin([{
+            from: 'public/api/',
+            to: 'api/'
+        },{
+            from: 'src/fonts/',
+            to: 'fonts/'
+        }])
     ]
 };
 
