@@ -82,6 +82,9 @@ let config = {
         new CopyWebpackPlugin([{
             from: 'public/api/',
             to: 'api/'
+        },{
+            from: 'src/fonts/',
+            to: 'fonts/'
         }])
     ]
 };
