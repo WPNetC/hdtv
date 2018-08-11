@@ -10,12 +10,14 @@ class ClientRows extends Component {
             dir: 'asc'
         };
 
+        // Clear any other arrows
         $('[class^=js-icon]').each(function () {
             if ($(this)[0].className.indexOf(name) === -1) {
                 $(this).html('');
             }
         });
 
+        // Add new arrow to sorting column
         const $elem = $('.js-icon-' + name);
         if ($elem) {
             if ($elem.html().length > 0) {
@@ -30,6 +32,7 @@ class ClientRows extends Component {
             }
         }
 
+        // Callback to parent with sort properties
         this.props.sortCallback(obj);
     }
 

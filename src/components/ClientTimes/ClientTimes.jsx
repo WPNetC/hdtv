@@ -10,7 +10,6 @@ class ClientTimes extends Component {
 
         /* This seems to help prevent methods being called in scope of child elements */
         this.filterCallback = this.filterCallback.bind(this);
-        this.getData = this.getData.bind(this);
         this.getDate = this.getDate.bind(this);
         this.sortCallback = this.sortCallback.bind(this);
         this.update = this.update.bind(this);
@@ -38,10 +37,11 @@ class ClientTimes extends Component {
         if (!filterState) {
             return;
         }
-        const changeInt = this.state.filterObj.refresh != filterState.refresh;
         this.setState({
             filterObj: filterState
         });
+        // Check if filterState requests a change in refresh rate
+        const changeInt = this.state.filterObj.refresh != filterState.refresh;
         if(changeInt) {
             const i = filterState.refresh * 60 * 1000;
             clearInterval(this.interval);
@@ -49,20 +49,6 @@ class ClientTimes extends Component {
             console.log('Refresh period now: ' + i);
         }
         this.update();
-    }
-
-    getData(callback) {
-        getAll((data) => {
-            const result = data || [{
-                name: 'Test company',
-                timeBank: 8,
-                timeUsed: 7.5,
-                timeRemaining: 0.5,
-                percentLeft: 25
-            }];
-
-            callback(result);
-        });
     }
 
     getDate() {
@@ -94,7 +80,7 @@ class ClientTimes extends Component {
     }
 
     update() {
-        this.getData((data) => {
+        getAll((data) => {
             var result = filter(data, this.state.filterObj);
             result = sort(result, this.state.sortObj);
 
